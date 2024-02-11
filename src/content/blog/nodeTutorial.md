@@ -8,7 +8,31 @@ heroImage: '/Nodejs-cover.png'
 
 # Curso de Node JS por parte de Midudev
 
-## Instalación de manejador de paquetes para NodeJs
+
+1. [Instalación de manejador de paquetes para NodeJs.](#init)
+2. [REPL De Node](#relp)
+3. [ejecutar el Hola Mundo](#holaMundo)
+4. [Variables Globales](#variablesGlobales)
+5. [Patron de Diseño Módulos](#patronesDeDiseño)
+    1. [Sistemas de módulos CommonJS -> cjs](#modulosCommonjs)
+    2. [Sistemas de módulos ES Modules -> mjs](#ESmodules)
+6. [Módulos Nativos de Nodejs](#modulosNativosDeNode)
+    1. [OS](#OS)
+    2. [FS](#FS)
+        1. [Buffer](#buffer)
+        2. [Asíncrono vs Síncrono](#asincronoVSSincrono)
+        3. [Promises](#promises)
+        4. [Transformar CallBacks a Promises](#callbacksAPromises)
+        5. [Async Await](#asyncAwait)
+        6. [Funciones Paralelas](#funcionesParalelas)
+    3. [PATH](#path)
+        1. [Hacer Un ls En node](#hacerUnLSEnNode)
+    4. [Process](#process)
+        1. [Volviendo con el ls](#volviendoConElLS)
+7. [Primer Servidor Con NodeJs](#primerServidorConNodeJS)
+
+
+## Instalación de manejador de paquetes para NodeJs <a name="init"></a>
 
 En nuestro equipo podemos tener instaladas diferentes versiones de node js, para manejarlos todos usamos el manejador de paquetes Fnm.
 
@@ -39,11 +63,11 @@ Antes de dejar el fnm usa el alias así.
 Con esto hacemos que, por predeterminado, se use esa versión en diferentes terminales de comandos.
 
 
-## REPL De Node
+## REPL De Node <a name="relp"></a>
 
 Al escribir en el terminal de comandos `node`, se nos abre el repl que es como la consola de las herramientas de desarrollo de los navegadores. También lenguajes como Python y Rust tienen su propio repl.
 
-## ejecutar el Hola Mundo
+## ejecutar el Hola Mundo <a name="holaMundo"></a>
 
 Creamos un archivo llamado index.js, así sería crearla con el terminal.
 
@@ -62,7 +86,7 @@ Ahora, por fin ejecutaremos el código de esta manera es:
 Y nos da como salida:
 ![Hola mundo](/HolaMundo.PNG)
 
-## OJO Variables Globales
+## OJO Variables Globales <a name="variablesGlobales"></a>
 
 Si, vienes de JavaScript, sabrás que hay una variables llamada `window`, la cual no está disponible en node js. Si lo ejecuta, te dará error porque no existe.
 
@@ -74,7 +98,7 @@ Ojo, con detalles, es cuando usando el `globalThis` en node apunta a una variabl
 
 Como nota, el `console.log()` en realidad proviene del `globalThis`, si escribieras `globalThis.console.log("hola mundo ♥")`, funcionaría.
 
-## Patron de Diseño Módulos
+## Patron de Diseño Módulos <a name="patronesDeDiseño"></a>
 
 ¿En nodejs es muy común ver el patrón de diseño de módulos, pero qué es? Simplemente, consiste en separar el código en módulos independientes y reutilizables. Este patrón de diseño en muy utilizado en programación orientada a objetos.
 
@@ -82,7 +106,7 @@ Como nota, el `console.log()` en realidad proviene del `globalThis`, si escribie
 ---
 
 
-### Sistemas de módulos CommonJS -> cjs
+### Sistemas de módulos CommonJS -> cjs <a name="modulosCommonjs"></a>
 
 Este sistema aún aparece en mucha documentación, pero no es recomendable el uso, porque hay mejores opciones.
 
@@ -156,7 +180,7 @@ console.log(resta(5,5))
 ```
 ---
 
-### Sistemas de módulos ES Modules -> mjs
+### Sistemas de módulos ES Modules -> mjs <a name="ESmodules"></a>
 
 Esta es la forma más moderna de exportar, no solo en nodejs, sino también en JavaScript. Ahora podemos indicar que vamos a usar ES modules simplemente cambiando la extensión de 'js' por 'mjs'.
 
@@ -188,9 +212,9 @@ Aquí se nos quita el `module.export` y simplemente antes de función colocamos 
 
 ---
 
-## Módulos Nativos de Nodejs 🍱🦿🦾
+## Módulos Nativos de Nodejs 🍱🦿🦾 <a name="modulosNativosDeNode"></a>
 
-### OS 💻
+### OS 💻 <a name="OS"></a>
 
 El os nos da información del sistema o PC.
 
@@ -217,7 +241,7 @@ Vamos por orden.
 * `os.totalmen()` la memoria total.
 * `os.uptime()` nos muestra cuánto tiempo lleva prendido el sistema.
 ---
-### FS 📁
+### FS 📁 <a name="FS"></a>
 
 FS es un módulo que permite la lectura y modificaciones de archivos. 
 
@@ -247,11 +271,11 @@ Como salida el programa estaría nuestro, "hola mundo ʕ•́ᴥ•̀ʔっ"
     * Segundo parámetro indicamos que nos lo devuelva con la codificación 'utf-8'. Si no tuviera la codificación, nos devolvería un buffer. 
     ![buffer](/buffer.PNG)
 
-#### Buffer?  <(' .' )>?
+#### Buffer?  <(' .' )>? <a name="buffer"></a>
 
 El Buffer es una manera de transportar datos temporales y de un único uso. Esto se diseñó originalmente para que las computadoras no se queden sin datos durante la transferencia de datos irregulares o por las velocidades de los procesadores.
 
-#### Asíncrono vs Síncrono
+#### Asíncrono vs Síncrono <a name="asincronoVSSincrono"></a>
 
 En Nodejs el código puede ejecutarse de manera Síncrono o Asíncrono.
 
@@ -340,7 +364,7 @@ Así mantenemos la ejecución principal de nodejs intacta.
 
 
 
-### Promises
+### Promises <a name="promises"></a>
 
 Siguiendo con la asincronía, podemos adaptar el código a promesas de JavaScript, para eso, en vez de requerir `node:fs` usamos `node:fs/promises`.
 
@@ -364,7 +388,7 @@ fs.readFile('./archivo2.txt', 'utf-8').then( text => {
 La salida no cambia solo la forma de escribirlo.
 
 
-### Transformar CallBacks a Promises
+### Transformar CallBacks a Promises <a name="callbacksAPromises"></a>
 
 Ahora, puede ser que el `node:fs/promises` no tenga alguna función o método, que no esté en forma de promesas. Para esas ocasiones podemos convertirlo en promesas de la siguiente forma.
 
@@ -396,7 +420,7 @@ readFilePromise('./archivo2.txt', 'utf-8').then( text => {
 
 
 
-### Async Await
+### Async Await <a name="asyncAwait"></a>
 
 Siguiendo con `node:fs/promises`, también está disponible el Async Await de JavaScripft. Pero si tiene la extensión `.js` se **debe usarlo adentro de una función o dará error**.
 
@@ -469,7 +493,7 @@ console.log(texto2, "\n");
 
 ```
 
-#### Funciones Paralelas
+#### Funciones Paralelas <a name="funcionesParalelas"></a>
 
 Con esto podemos hacer que se hagan dos procesos a la vez y que no se interrumpa el hilo principal del node. 
 
@@ -488,13 +512,8 @@ Promise.all([
 
 Ojo, no será como en las promesas o callbacks que, tan pronto que termine de cargar, se ejecuta. aquí los `console.log` siempre se va a ejecutar en orden.
 
----
----
----
----
----
 
-### PATH 💻
+### PATH 💻 <a name="path"></a>
 
 Path nos permite revisar las carpetas del dispositivo. Ojo con detalles: para usar path, hay que tener muy en cuenta si, el sistema operativo es Windows o Linux, porque en Windows las carpetas se usan con `\`, pero en Linux se une el otro `/`.
 
@@ -529,7 +548,7 @@ Aquí, tenemos algunos métodos.
 * `path.extname` Nos da la extensión de un archivo.
 
 
-### Hacer Un ls En node.
+### Hacer Un ls En node. <a name="hacerUnLSEnNode"></a>
 
 Como pequeño reto, vamos a hacer un ls.
 
@@ -550,7 +569,7 @@ fs.readdir('.', (err , files) => {
 * Una cosa que se me olvidó comentar en los callbacks es que siempre va primero el error y luego tu respuesta, así para que no se olviden de programar los errores.
 
 
-### Process
+### Process <a name="process"></a>
 
 `Process` es una variable global que nos permite ver los procesos por los que pasa la ejecución de node.
 
@@ -589,7 +608,7 @@ Salida:
 * `process.on` También podemos marcarle eventos. En este caso es un evento cuando salga el programa.
 * `process.exit(1)` Detiene la ejecución del programa. Si le pasamos como parámetro `0` es que funcione correctamente el programa y si lo pasamos como `1`, es que hubo algún error.
 
-### Volviendo con el ls.
+### Volviendo con el ls. <a name="volviendoConElLS"></a>
 
 Para esta mini aplicación hemos reunido todos los conocimientos de atrás.
 
@@ -646,7 +665,7 @@ ls(folder)
 
 
 
-## Primer Servidor Con NodeJs
+## Primer Servidor Con NodeJs <a name="primerServidorConNodeJS"></a>
 
 Podemos crear un servidor en NodeJS. Hay paquetes de NPM que lo hacen más fácil, pero esto es un tutorial de NodeJS.
 
